@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "bf3eee14-ce40-4e4a-b216-48adabd3abb8",
+		"name": "JWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "36665693"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"vikas\",\r\n    \"password\":\"vikas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8082/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"vikas\",\r\n    \"password\":\"vikas\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8082/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "API/hello",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer <TOKEN>"
+					}
+				],
+				"url": "http://localhost:8082/api/hello",
+				"description": "Generated from cURL: curl -X GET http://localhost:8080/api/hello \\\r\n  -H \"Authorization: Bearer <TOKEN>\"\r\n"
+			},
+			"response": []
+		}
+	]
+}
