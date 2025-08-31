@@ -14,6 +14,9 @@ public class JwtUtil {
     @Value("${jwt.expiration}")
     private long expiration;
 
+    @Value("${jwt.refreshExpiration}")
+    private long refreshExpiration;
+
     public String generateToken(String username) {
         return Jwts.builder()
             .setSubject(username)
@@ -31,6 +34,24 @@ public class JwtUtil {
     }
 
     public boolean validateToken(String token) {
+        try {
+            Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    public String generateRefreshToken(String username) {
+        return Jwts.builder()
+            .setSubject(username)
+            .setIssuedAt(new Date())
+            .setExpiration(new Date(System.currentTimeMillis() + refreshExpiration))
+            .signWith(SignatureAlgorithm.HS512, secret)
+            .compact();
+    }
+
+    public boolean validateRefreshToken(String token) {
         try {
             Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return true;
